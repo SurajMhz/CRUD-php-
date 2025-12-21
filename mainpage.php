@@ -13,12 +13,6 @@
         <div class="headCard">
             <h1>Employee Management System</h1>
             <a href="AddEmployee.php" class="AddButton">+ Add Employee</a>
-            <!-- <button onclick="AddEmployee.php">Add Student</button> -->
-            <!-- <button onclick="ShowPopUp()">+ Add Employee</button> -->
-            <!-- <form method="POST"> -->
-
-            <!-- <input type="submit" name="addMore" class="AddButton" value="+ Add Employee"> -->
-            <!-- </form> -->
         </div>
 
     </header>
@@ -29,26 +23,6 @@
     <main>
 
         <div class="DataContainer"></div>
-
-        <?php
-        $CurrentEmployee = [];
-        $Status = false;
-        if (isset($_POST["Name"])) {
-            $name = $_POST["Name"];
-            $Manager = $_POST["Manager"];
-            $Faculty = $_POST["Faculty"];
-            $Role = $_POST["Role"];
-            $Status = true;
-            $CurrentEmployee = [
-                "Name" => $name,
-                "Manager" => $Manager,
-                "Faculty" => $Faculty,
-                "Role" => $Role
-            ];
-        }
-        ?>
-
-
     </main>
 
 </body>
@@ -87,7 +61,6 @@
         Faculty.textContent = "Faculty";
         const FacultyDetail = document.createElement('td');
         FacultyDetail.textContent = Data.Faculty;
-        // Address.innerHTML=`<span>`
         row3.appendChild(Faculty);
         row3.appendChild(FacultyDetail);
 
@@ -112,8 +85,8 @@
         const BottomData = document.createElement('div');
         BottomData.classList.add("BottomData");
         BottomData.innerHTML = `
-        <input type="button" onclick="EditForm()" value=" Edit">
-        <input type="button" onclick="DeletePopUp()" value="Delete">
+        <input type="button"  value=" Edit">
+        <input type="button" value="Delete">
     `
         // const DeleteButton = document.createElement("button");
         // DeleteButton.textContent = "Delete";
@@ -133,16 +106,10 @@
             CardGen(element);
         });
     }
+    Employees.length>0 ?   DisplayAll(Employees) : document.querySelector(".DataContainer").innerHTML ="No Employees";
+  
 
-    let Status = <?php echo json_encode($Status); ?>;
-    let CurrentEmployee = <?php echo json_encode($CurrentEmployee); ?>;
-    if (Status) {
-        Employees.push(CurrentEmployee)
-        localStorage.setItem("Employees", JSON.stringify(Employees))
-        DisplayAll(Employees)
-        console.log(Employees)
-        <?php $Status = false; ?>
-    }
+
 
 </script>
 

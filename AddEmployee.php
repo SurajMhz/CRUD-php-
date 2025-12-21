@@ -10,12 +10,11 @@
 
 <body>
     <div class="Container">
-        <form class="Form" name="Form" id="Form" action="mainpage.php" method="POST" enctype="multipart/form-data">
+        <form class="Form" name="Form" id="Form" action="Process.php" method="post" enctype="multipart/form-data">
             <h1 class="Top">Add New Employee</h1>
 
             <input class="InputBox" name="Name" type="text" placeholder="Enter Employees Name" required> 
             <!--<input class="InputBox" name="Role" type="text" placeholder="Enter Employees Role"> -->
-
             <!-- <input class="InputBox" name="Faculty" type="text" placeholder="Enter Employees Faculty"> -->
              
             <input class="InputBox" name="Manager" type="text" placeholder="Enter Employees Supervisor" required>
