@@ -1,5 +1,5 @@
 <?php
-require_once "databaseconnection.php";
+require_once "../DatabaseConnection/databaseconnection.php";
 
 $id = $_POST['id'];
 $name = $_POST['name'];
@@ -16,4 +16,4 @@ $sql = "UPDATE Users SET
 
 $conn->query($sql);
 
-header("Location: mainpage.php");
+header("Location: ../mainpage.php");

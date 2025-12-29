@@ -1,5 +1,5 @@
 <?php
-require_once "databaseconnection.php";
+require_once "../DatabaseConnection/databaseconnection.php";
 
 if(!isset($_GET['id'])){
 	die("Invalid request");
@@ -23,7 +23,7 @@ $row = $result->fetch_assoc();
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Update Employee</title>
-	<link rel="stylesheet" href="AddEmp.css">
+	<link rel="stylesheet" href="../assets/css/AddEmp.css">
 </head>
 
 <body>

@@ -24,7 +24,7 @@ if (!$User) {
         <div class="headCard">
             
             <h1>Employee Management System</h1>
-            <a href="AddEmployee.php" class="AddButton">+ Add Employee</a>
+            <a href="./Add/AddEmployee.php" class="AddButton">+ Add Employee</a>
         </div>
 
     </header>
@@ -107,8 +107,8 @@ if (!$User) {
         const BottomData = document.createElement('div');
         BottomData.classList.add("BottomData");
         BottomData.innerHTML = `
-    <a href="UpdateEmployee.php?id=${Data.id}">Edit</a>
-    <a href="delete.php?id=${Data.id}">Delete</a>
+    <a href="./Update/UpdateEmployee.php?id=${Data.id}">Edit</a>
+    <a href="./Delete/delete.php?id=${Data.id}">Delete</a>
 `;
 
 
