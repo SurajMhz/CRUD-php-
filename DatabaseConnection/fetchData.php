@@ -1,7 +1,7 @@
 <?php
 require 'databaseconnection.php';
 
-$sql = "SELECT * FROM Users";
+$sql = "SELECT * FROM Student";
 $result = $conn->query($sql);
 
 $data = [];

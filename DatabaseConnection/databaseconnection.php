@@ -2,7 +2,7 @@
 
 
 // Create connection
-$conn = new mysqli("localhost", "root", "", "cruddatas");
+$conn = new mysqli("localhost", "root", "", "StudentManagement");
 
 // Check connection
 if ($conn->connect_error) {

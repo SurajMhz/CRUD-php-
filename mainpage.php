@@ -22,9 +22,9 @@ if (!$User) {
     <header>
         <h1>Welcome to Dashboard <?php echo $User; ?></h1>
         <div class="headCard">
-            
-            <h1>Employee Management System</h1>
-            <a href="./Add/AddEmployee.php" class="AddButton">+ Add Employee</a>
+
+            <h1>Student Management System</h1>
+            <a href="./Add/AddStudent.php" class="AddButton">+ Add Student</a>
         </div>
 
     </header>
@@ -32,7 +32,7 @@ if (!$User) {
     <?php
     require './DatabaseConnection/databaseconnection.php';
 
-    $sql = "SELECT * FROM Users";
+    $sql = "SELECT * FROM student";
     $result = $conn->query($sql);
     $data = [];
     if ($result->num_rows > 0) {
@@ -40,7 +40,7 @@ if (!$User) {
             $data[] = $row;
         }
     }
-    echo "<script>const Employees = " . json_encode($data) . "; console.log(Employees);</script>";
+    echo "<script>const Students = " . json_encode($data) . "; </script>";
     ?>
 
     <main>
@@ -50,84 +50,66 @@ if (!$User) {
 </body>
 
 <script>
-    function CardGen(Data) {
-        const Container = document.querySelector(".DataContainer");
-        // Container.innerHTML = ""; // Clear old cards
-        const Card = document.createElement('div');
-        Card.classList.add("Card");
-        Card.dataset.id = Data.id;
+function CardGen(Data){
+	const Container=document.querySelector(".DataContainer");
 
-        const TopData = document.createElement('div');
-        TopData.classList.add("TopData");
+	const Card=document.createElement("div");
+	Card.classList.add("Card");
+	Card.dataset.id=Data.id;
 
-        const Name = document.createElement('h3');
-        Name.innerText = Data.name;
-        TopData.appendChild(Name);
+	const TopData=document.createElement("div");
+	TopData.classList.add("TopData");
 
-        const MiddleData = document.createElement('div');
-        MiddleData.classList.add("MiddleData");
+	const Name=document.createElement("h3");
+	Name.innerText=Data.fname+" "+Data.lname;
+	TopData.appendChild(Name);
 
-        const Table = document.createElement('table');
+	const MiddleData=document.createElement("div");
+	MiddleData.classList.add("MiddleData");
 
+	const Table=document.createElement("table");
 
-        const row2 = document.createElement('tr');
-        const Role = document.createElement('td');
-        Role.textContent = "Role";
-        const RoleDetail = document.createElement('td');
-        RoleDetail.textContent = Data.role;
-        row2.appendChild(Role);
-        row2.appendChild(RoleDetail);
+	function row(label,value){
+		const tr=document.createElement("tr");
+		const td1=document.createElement("td");
+		const td2=document.createElement("td");
+		td1.innerText=label;
+		td2.innerText=value;
+		tr.appendChild(td1);
+		tr.appendChild(td2);
+		return tr;
+	}
 
-        const row3 = document.createElement('tr');
-        const Faculty = document.createElement('td');
-        Faculty.textContent = "Faculty";
-        const FacultyDetail = document.createElement('td');
-        FacultyDetail.textContent = Data.faculty;
-        row3.appendChild(Faculty);
-        row3.appendChild(FacultyDetail);
+	Table.appendChild(row("Email",Data.email));
+	Table.appendChild(row("DOB",Data.dob));
+	Table.appendChild(row("Gender",Data.gender));
+	Table.appendChild(row("Phone",Data.phone));
+	if(Data.hobbies)Table.appendChild(row("Hobbies",Data.hobbies));
 
-        const row4 = document.createElement('tr');
-        const Manager = document.createElement('td');
-        Manager.textContent = "Supervisor";
-        const ManagerDetail = document.createElement('td');
-        ManagerDetail.textContent = Data.supervisor;
-        row4.appendChild(Manager);
-        row4.appendChild(ManagerDetail);
+	MiddleData.appendChild(Table);
 
-        Table.appendChild(row2);
-        Table.appendChild(row3);
-        Table.appendChild(row4);
+	const BottomData=document.createElement("div");
+	BottomData.classList.add("BottomData");
+	BottomData.innerHTML=`
+		<a href="./Update/UpdateStudent.php?id=${Data.id}">Edit</a>
+		<a href="./Delete/delete.php?id=${Data.id}">Delete</a>
+	`;
 
-        // const Email = document.createElement('p');
-        // Email.textContent = 'Email@email.email';
+	Card.appendChild(TopData);
+	Card.appendChild(MiddleData);
+	Card.appendChild(BottomData);
 
-        MiddleData.appendChild(Table);
-        // MiddleData.appendChild(Email);
-
-        const BottomData = document.createElement('div');
-        BottomData.classList.add("BottomData");
-        BottomData.innerHTML = `
-    <a href="./Update/UpdateEmployee.php?id=${Data.id}">Edit</a>
-    <a href="./Delete/delete.php?id=${Data.id}">Delete</a>
-`;
-
-
-
-        Card.appendChild(TopData);
-        Card.appendChild(MiddleData);
-        Card.appendChild(BottomData);
-        Container.appendChild(Card);
-    }
-
+	Container.appendChild(Card);
+}
     function DisplayAll(Datas) {
         document.querySelector(".DataContainer").innerHTML = "";
         Datas.forEach(element => {
             CardGen(element);
         });
     }
-    Employees.length > 0
-        ? DisplayAll(Employees)
-        : document.querySelector(".DataContainer").innerHTML = "No Employees";
+    Students.length > 0
+        ? DisplayAll(Students)
+        : document.querySelector(".DataContainer").innerHTML = "No Students Found";
 </script>
 
 

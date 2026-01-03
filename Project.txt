@@ -1,0 +1,14 @@
+Register
+Login
+
+Dashboard
+ welcome user using sessio
+LogOut
+Add|Edit|Delete-List Students details
+fname|Lname
+Section
+DOB
+phone
+gender
+hobby
+profile picture
